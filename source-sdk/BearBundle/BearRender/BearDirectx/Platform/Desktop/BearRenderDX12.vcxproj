@@ -305,6 +305,7 @@ XCOPY $(RenderExternal)Libraries\$(Platform)\dxcompiler.dll $(OutDir)  /Y</Comma
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>DEVELOPER_VERSION;DX12;NDEBUG;BEARRENDERDX12_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>DX12PCH.h</PrecompiledHeaderFile>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
