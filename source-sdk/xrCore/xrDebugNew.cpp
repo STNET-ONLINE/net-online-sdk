@@ -53,6 +53,7 @@ extern bool shared_str_initialized;
 #	define USE_OWN_ERROR_MESSAGE_WINDOW
 #else // DEBUG
 #	define USE_OWN_MINI_DUMP
+#	define USE_OWN_ERROR_MESSAGE_WINDOW
 #endif // DEBUG
 
 XRCORE_API	xrDebug		Debug;
@@ -145,7 +146,7 @@ void xrDebug::gather_info		(const char *expression, const char *description, con
 void xrDebug::do_exit	(const std::string &message)
 {
 	FlushLog			();
-	MessageBox			(NULL,message.c_str(),"Error",MB_OK|MB_ICONERROR|MB_SYSTEMMODAL);
+	MessageBox(NULL, message.c_str(), "Error", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY | MB_SETFOREGROUND);
 	TerminateProcess	(GetCurrentProcess(),1);
 }
 
@@ -192,10 +193,10 @@ void xrDebug::backend	(const char *expression, const char *description, const ch
 #	ifdef USE_OWN_ERROR_MESSAGE_WINDOW
 		int					result = 
 			MessageBox(
-				GetTopWindow(NULL),
+				NULL,
 				assertion_info,
 				"Fatal Error",
-				MB_CANCELTRYCONTINUE|MB_ICONERROR|MB_SYSTEMMODAL
+				MB_CANCELTRYCONTINUE | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY | MB_SETFOREGROUND | MB_DEFBUTTON3
 			);
 
 		switch (result) {
@@ -215,7 +216,7 @@ void xrDebug::backend	(const char *expression, const char *description, const ch
 				ignore_always	= true;
 				break;
 			}
-			default : NODEFAULT;
+			default: DEBUG_INVOKE;
 		}
 #	else // USE_OWN_ERROR_MESSAGE_WINDOW
 #		ifdef USE_BUG_TRAP
