@@ -2,4 +2,3 @@ Bin/
 Intermediate/
 Lib/
 source-sdk/.vs
-source-sdk/editors/XrEUI/imgui_draw.cpp
