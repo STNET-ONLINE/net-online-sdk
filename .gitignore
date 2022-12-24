@@ -3,3 +3,4 @@ Intermediate/
 Lib/
 source-sdk/.vs
 Source/.vs
+*.user
