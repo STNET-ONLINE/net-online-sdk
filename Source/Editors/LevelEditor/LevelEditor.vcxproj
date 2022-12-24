@@ -291,6 +291,7 @@
     <ClInclude Include="Editor\Utils\XrSEFactoryManager.h" />
     <ClInclude Include="Engine\XRayEditor.h" />
     <ClInclude Include="Engine\XrGameManager.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="UI\ObjectList\UIObjectList.h" />
     <ClInclude Include="UI\ObjectList\UIObjectListItem.h" />
@@ -352,6 +353,12 @@
     <ProjectReference Include="..\XrEUI\XrEUI.vcxproj">
       <Project>{7e28883c-db86-4ee8-813a-991ba20c68c9}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="xray.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LevelEditor.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
