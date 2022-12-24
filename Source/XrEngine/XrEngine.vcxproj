@@ -206,7 +206,8 @@
       <AdditionalDependencies>lua51.lib;vfw32.lib;Winmm.lib;dxguid.lib;dinput8.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY $(SolutionDir)..\SDK\Bin\$(Platform)\lua51.dll $(OutDir)  /Y</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Shipping|x64'">
