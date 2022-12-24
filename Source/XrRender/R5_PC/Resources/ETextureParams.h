@@ -40,6 +40,7 @@ struct ECORE_API STextureParams{
 		tmBlin_Phong, 
 		tmPhong_Metal,
         tmMetal_OrenNayar,
+		tmPBR,
 		tmForceU32			= u32(-1)
     };
 	enum{
