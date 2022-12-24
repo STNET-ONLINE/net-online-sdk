@@ -4,3 +4,4 @@ Lib/
 source-sdk/.vs
 Source/.vs
 *.user
+*.vcxproj.user
