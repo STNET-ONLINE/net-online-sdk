@@ -29,6 +29,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
         else if (strstr(GetCommandLine(), "-netonline"))
         {
             FSName = "fs_netonline.ltx";
+            // Special fsgame to NET Online
         }
     }
     Core._initialize("LevelEditor", ELogCallback, 1, FSName, true);
