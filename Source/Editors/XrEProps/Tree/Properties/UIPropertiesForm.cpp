@@ -95,7 +95,8 @@ void UIPropertiesForm::Draw()
 		ImGui::TableSetupColumn("Prop", ImGuiTableColumnFlags_WidthFixed);
 		ImGui::TableHeadersRow();
 		m_Root.DrawRoot();
-		ImGui::EndTable();
+		ImGui::EndTable();	
+		//	ImGui:DrawEditGameType();
 	}
 }
 
@@ -299,6 +300,7 @@ void UIPropertiesForm::DrawEditText()
 		ImGui::EndGroup();
 		if(m_EditTextValueData)
 		ImGui::InputTextMultiline("##text", m_EditTextValueData, m_EditTextValueDataSize, ImVec2(500, 200) ,ImGuiInputTextFlags_CallbackResize, [](ImGuiInputTextCallbackData* data)->int {return reinterpret_cast<UIPropertiesForm*>(data->UserData)->DrawEditText_Callback(data); }, reinterpret_cast<void*>(this));
+
 
 		
 		ImGui::EndPopup();
