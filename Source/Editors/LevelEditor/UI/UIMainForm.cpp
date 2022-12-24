@@ -94,8 +94,8 @@ void UIMainForm::Draw()
 	m_Properties->Draw();
 	m_WorldProperties->Draw();
     static bool Demo = true;
-    ImGui::ShowDemoWindow(&Demo);
     m_Render->Draw();
+    //ImGui::ShowDemoWindow(&Demo);
 }
 
 bool UIMainForm::Frame()
