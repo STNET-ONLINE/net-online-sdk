@@ -146,6 +146,11 @@ void UISpawnTool::OnItemFocused(ListItem* item)
     if (item)
     {
         m_Current = (LPCSTR)item->m_Object;
+        if (strcmp(item->Key(), RPOINT_CHOOSE_NAME) == 0)
+        m_Current = RPOINT_CHOOSE_NAME;
+
+        if (strcmp(item->Key(), ENVMOD_CHOOSE_NAME) == 0)
+            m_Current = ENVMOD_CHOOSE_NAME;
     }
     ExecCommand(COMMAND_RENDER_FOCUS);
 }
