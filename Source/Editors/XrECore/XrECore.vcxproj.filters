@@ -833,6 +833,7 @@
     <ClInclude Include="Engine\guid_generator.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WildMagic\WmlMath.inl">
@@ -892,5 +893,11 @@
     <None Include="Editor\ImageEditor.ddp">
       <Filter>Editor</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="XrECore.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="xray.ico" />
   </ItemGroup>
 </Project>
