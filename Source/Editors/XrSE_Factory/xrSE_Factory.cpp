@@ -56,7 +56,9 @@ extern "C" {
 	{
 		string_path					SYSTEM_LTX;
 		FS.update_path(SYSTEM_LTX, "$game_config$", "system.ltx");
-		pSettings = xr_new<CInifile>(SYSTEM_LTX);
+		
+		pSettings = xr_new<CInifile>(SYSTEM_LTX, true, true, true);
+		Msg("initialize size: %d, path = %s", pSettings->section_exist("profiles"), SYSTEM_LTX);
 
 		setup_luabind_allocator();
 
