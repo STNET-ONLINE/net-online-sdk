@@ -8,6 +8,8 @@
 	#include "malloc.h"
 #endif
 
+IWriter* filelog = nullptr;
+
 extern BOOL					LogExecCB		= TRUE;
 static string_path			logFName		= "engine.log";
 static string_path			log_file_name	= "engine.log";
@@ -22,18 +24,8 @@ static LogCallback			LogCB			= 0;
 
 void FlushLog			()
 {
-	if (!no_log){
-		logCS.Enter			();
-		IWriter *f			= FS.w_open(logFName);
-        if (f) {
-            for (u32 it=0; it<LogFile->size(); it++)	{
-				LPCSTR		s	= *((*LogFile)[it]);
-				f->w_string	(s?s:"");
-			}
-            FS.w_close		(f);
-        }
-		logCS.Leave			();
-    }
+	if (filelog)
+		filelog->flush();
 }
 
 void AddOne				(const char *split) 
@@ -52,7 +44,9 @@ void AddOne				(const char *split)
 	{
 		shared_str			temp = shared_str(split);
 //		DUMP_PHASE;
-		LogFile->push_back	(temp);
+	//	LogFile->push_back	(temp);
+		if (filelog)
+			filelog->w_stringZ(split);
 	}
 
 	//exec CallBack
@@ -180,18 +174,22 @@ void InitLog()
 
 void CreateLog			(BOOL nl)
 {
-    no_log				= nl;
-	strconcat			(sizeof(log_file_name),log_file_name,Core.ApplicationName,"_",Core.UserName,".log");
+	no_log = nl;
+	strconcat(sizeof(log_file_name), log_file_name, Core.ApplicationName, "_", Core.UserName, ".log");
 	if (FS.path_exist("$logs$"))
-		FS.update_path	(logFName,"$logs$",log_file_name);
-	if (!no_log){
-        IWriter *f		= FS.w_open	(logFName);
-        if (f==NULL){
-        	MessageBox	(NULL,"Can't create log file.","Error",MB_ICONERROR);
-        	abort();
-        }
-        FS.w_close		(f);
-    }
+		FS.update_path(logFName, "$logs$", log_file_name);
+	if (!no_log) {
+		IWriter* f = FS.w_open(logFName);
+		if (f == NULL) {
+			MessageBox(NULL, "Can't create log file.", "Error", MB_ICONERROR);
+			abort();
+		}
+		FS.w_close(f);
+	}
+
+
+	if (!filelog)
+		filelog = FS.w_open(logFName);
 }
 
 void CloseLog(void)
@@ -199,4 +197,5 @@ void CloseLog(void)
 	FlushLog		();
  	LogFile->clear	();
 	xr_delete		(LogFile);
+	xr_delete		(filelog);
 }
