@@ -545,8 +545,9 @@ bool CWayObject::LoadLTX(CInifile& ini, LPCSTR sect_name)
 
     if(!GetName())
     {
-     ELog.DlgMsg(mtError,"Corrupted scene file.[%s] sect[%s] has empty name",ini.fname(), sect_name);
-     return false;
+        SetName("null");
+        //ELog.DlgMsg(mtError,"Corrupted scene file.[%s] sect[%s] has empty name",ini.fname(), sect_name);
+        //return false;
     }
 
     u32 cnt = ini.r_u32(sect_name, "wp_count");
@@ -617,7 +618,7 @@ void CWayObject::SaveLTX(CInifile& ini, LPCSTR sect_name)
         ini.w_bool			(sect_name, buff, W->m_bSelected);
 
         sprintf				(buff,"wp_%d_name",wp_idx);
-        ini.w_string		(sect_name, buff, *W->m_Name?*W->m_Name:"");
+        ini.w_string(sect_name, buff, *W->m_Name ? *W->m_Name : "_null");
     }
     wp_idx = 0;
 	for (auto it=m_WayPoints.begin(); it!=m_WayPoints.end(); ++it, ++wp_idx)
@@ -663,7 +664,10 @@ bool CWayObject::LoadStream(IReader& F)
     	W->m_Flags.assign(F.r_u32());
         W->m_bSelected	= F.r_u16();
         F.r_stringZ		(buf);
-        W->m_Name		= buf.c_str();
+        if (buf != 0)
+            W->m_Name = buf.c_str();
+        else
+            W->m_Name = "null";
     }
 
 	R_ASSERT(F.find_chunk(WAYOBJECT_CHUNK_LINKS));
