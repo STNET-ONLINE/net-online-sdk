@@ -24,6 +24,7 @@
 #define RPOINT_SIZE 0.5f
 #define ENVMOD_SIZE 0.25f
 #define MAX_TEAM 6
+
 const u32 RP_COLORS[MAX_TEAM]={0xff0000,0x00ff00,0x0000ff,0xffff00,0x00ffff,0xff00ff};
 // CLE_Visual
 CLE_Visual::CLE_Visual(ISE_Visual* src)
@@ -62,9 +63,9 @@ void CLE_Visual::OnChangeVisual	()
     {
         visual				= ::Render->model_Create(source->visual_name.c_str());
 
-        if(NULL==visual && !g_tmp_lock)
+        if (NULL == visual && false /* && !g_tmp_lock */)
         {
-         xr_string _msg = "Model [" + xr_string(source->visual_name.c_str())+"] not found. Do you want to select it from library?";
+            xr_string _msg = "Model [" + xr_string(source->visual_name.c_str()) + "] not found. Do you want to select it from library?";
               int mr = ELog.DlgMsg(mtConfirmation,mbYes |mbNo, _msg.c_str());
               LPCSTR _new_val = 0;
               g_tmp_lock = true;

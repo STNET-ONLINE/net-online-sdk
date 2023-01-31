@@ -11,6 +11,8 @@ enum ERPGameType{		// [0..255]
 	rpgtGameArtefactHunt,
 	rpgtGameCaptureTheArtefact,
 	rpgtGameCount,
+    rpgtGameFreemp,
+    rpgtGameRoleplay
 };
 
 xr_token rpoint_game_type[]={
@@ -19,6 +21,8 @@ xr_token rpoint_game_type[]={
 	{ "TeamDeathmatch",		rpgtGameTeamDeathmatch		},
 	{ "ArtefactHunt",		rpgtGameArtefactHunt		},
 	{ "CaptureTheArtefact",	rpgtGameCaptureTheArtefact	},
+    { "Freemp",             rpgtGameFreemp },
+    { "rpgtGameRoleplay",   rpgtGameRoleplay},
 	{ 0,					0	}
 };
 

@@ -527,10 +527,11 @@ void UIPropertiesItem::DrawProp()
 		{
 			GameTypeValue* V = dynamic_cast<GameTypeValue*>(PItem->GetFrontValue()); R_ASSERT(V);
 			ImGui::Text(PItem->GetDrawText().c_str());
-			PropertiesFrom->m_EditGameTypeChooser = V->GetValue();
+			//PropertiesFrom->m_EditGameTypeChooser = V->GetValue();
 			PItem->BeforeEdit<GameTypeValue, GameTypeChooser>(PropertiesFrom->m_EditGameTypeChooser);
 			if (ImGui::OpenPopupOnItemClick2("EditGameType", 0))
 			{
+				PropertiesFrom->m_EditGameTypeChooser = V->GetValue();
 				PropertiesFrom->m_EditGameTypeValue = PItem;
 			}
 			PropertiesFrom->DrawEditGameType();

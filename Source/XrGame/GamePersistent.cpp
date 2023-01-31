@@ -207,12 +207,6 @@ LPCSTR GameTypeToString(EGameIDs gt, bool bShort)
 	case eGameIDCaptureTheArtefact:
 		return (bShort)?"cta":"capturetheartefact";
 		break;
-	case eGameIDDominationZone:
-		return (bShort)?"dz":"dominationzone";
-		break;
-	case eGameIDTeamDominationZone:
-		return (bShort)?"tdz":"teamdominationzone";
-		break;
 	default :
 		return		"---";
 	}
@@ -235,12 +229,6 @@ EGameIDs ParseStringToGameType(LPCSTR str)
 					if (!xr_strcmp(str, "capturetheartefact") || !xr_strcmp(str, "cta")) 
 						return eGameIDCaptureTheArtefact;
 					else
-						if (!xr_strcmp(str, "dominationzone")) 
-							return eGameIDDominationZone;
-						else
-							if (!xr_strcmp(str, "teamdominationzone")) 
-								return eGameIDTeamDominationZone;
-							else 
 								return eGameIDNoGame; //EGameIDs
 }
 
